@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
 use App\Models\User;
-use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
+use App\Providers\RouteServiceProvider;
+use App\Mail\WelcomeEmail;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -43,7 +45,7 @@ class RegisteredUserController extends Controller
         ]);
 
         event(new Registered($user));
-
+        Mail::to($user->email)->send(new WelcomeEmail($user));
         Auth::login($user);
 
         return redirect(RouteServiceProvider::HOME);
