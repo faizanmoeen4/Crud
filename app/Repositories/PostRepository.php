@@ -34,3 +34,4 @@ class PostRepository implements PostRepositoryInterface
         return $post->delete();
     }
 }
+

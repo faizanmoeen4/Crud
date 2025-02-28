@@ -72,4 +72,5 @@ class PostController extends Controller
 
         return response()->json(['message' => 'Post deleted successfully'], Response::HTTP_OK);
     }
+    
 }
