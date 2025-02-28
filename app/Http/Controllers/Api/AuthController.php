@@ -32,7 +32,7 @@ class AuthController extends Controller
             return response()->json(['message' => 'Invalid credentials'], 401);
         }
 
-        return response()->json(['token' => Auth::user()->plainTextToken]);
+        return response()->json(['user' => Auth::user()->createToken('API Token')->plainTextToken]);
     }
 
     public function logout(Request $request)
